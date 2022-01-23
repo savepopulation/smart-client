@@ -8,12 +8,6 @@ object CoreLibraries {
     const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlinVersion}"
 }
 
-// Support
-object SupportLibraries {
-    const val design = "com.google.android.material:material:${Versions.supportDesignVersion}"
-    const val multidex = "androidx.multidex:multidex:${Versions.multiDexVersion}"
-}
-
 // Test
 object TestLibraries {
     const val jUnit = "junit:junit:${Versions.jUnitVersion}"
@@ -32,5 +26,5 @@ object TestLibraries {
 
 // Other
 object Libraries {
-    // no-nop
+    // no-op
 }

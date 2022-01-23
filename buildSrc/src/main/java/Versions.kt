@@ -10,8 +10,8 @@ object Versions {
      * Sdk Versions
      */
     const val minSdkVersion = 21
-    const val targetSdkVersion = 30
-    const val compileSdkVersion = 30
+    const val targetSdkVersion = 31
+    const val compileSdkVersion = 31
 
     /*
      * Source Versions
@@ -29,7 +29,6 @@ object Versions {
     const val jUnitVersion = "4.12"
     const val testRunnerVersion = "1.1.1"
     const val espressoCoreVersion = "3.1.0"
-    const val supportDesignVersion = "1.2.0-alpha06"
     const val fragmentTestVersion = "1.1.0"
     const val testRulesVersion = "1.1.1"
     const val testCoreVersion = "1.1.0"
@@ -39,6 +38,4 @@ object Versions {
     const val mockKVersion = "1.9.3"
     const val coreTestingVersion = "2.0.0"
     const val robolectricVersion = "4.3.1"
-    const val multiDexVersion = "2.0.1"
-    const val javaxAnnotationVersion = "10.0-b28"
 }

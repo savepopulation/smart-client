@@ -10,21 +10,18 @@ typealias ClientIdGenerator = () -> String
 
 @SuppressLint("StaticFieldLeak")
 object SmartClient {
-
-    private var clientIdGenerator: ClientIdGenerator = {
-        UUID.randomUUID().toString()
-    }
-
     private lateinit var localDataSource: LocalDataSource
+    private lateinit var _clientId: String
+
+    val clientId: String
+        get() = _clientId
 
     fun setup(
         context: Context,
         localDataSource: LocalDataSource? = null,
-        clientIdGenerator: ClientIdGenerator? = null
+        clientIdGenerator: ClientIdGenerator = { UUID.randomUUID().toString() }
     ) {
         this.localDataSource = localDataSource ?: DefaultLocalDataSource(context.applicationContext)
-        clientIdGenerator?.let {
-            this.clientIdGenerator = it
-        }
+        _clientId = this.localDataSource.getClientId() ?: clientIdGenerator.invoke()
     }
 }

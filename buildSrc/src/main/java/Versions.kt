@@ -23,9 +23,9 @@ object Versions {
     /*
      * Dependency versions
      */
-    const val buildToolsVersion = "29.0.2"
-    const val gradleVersion = "4.1.1"
-    const val kotlinVersion = "1.4.32"
+    const val buildToolsVersion = "31.0.0"
+    const val gradleVersion = "7.0.3"
+    const val kotlinVersion = "1.6.0"
     const val jUnitVersion = "4.12"
     const val testRunnerVersion = "1.1.1"
     const val espressoCoreVersion = "3.1.0"

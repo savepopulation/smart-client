@@ -1,16 +1,16 @@
 package com.raqun.smartclient.lib.headers
 
 open class DefaultHeaderKeys(
-    override val deviceLocale: String = "x-device-locale",
-    override val deviceBrand: String = "x-device-brand",
-    override val deviceModel: String = "x-device-model",
-    override val deviceOs: String = "x-device-os",
-    override val deviceOsType: String = "x-device-os-type",
-    override val channel: String = "x-channel",
-    override val deviceType: String = "x-device-type",
-    override val isEmulator: String = "x-app-is-emulator",
-    override val isRooted: String = "x-is-rooted",
-    override val timeStamp: String = "x-timestamp",
-    override val clientId: String = "x-client-id",
-    override val sessionId: String = "x-session-id"
+    override val deviceLocaleKey: String = "x-device-locale",
+    override val deviceBrandKey: String = "x-device-brand",
+    override val deviceModelKey: String = "x-device-model",
+    override val deviceOsKey: String = "x-device-os",
+    override val deviceOsTypeKey: String = "x-device-os-type",
+    override val channelKey: String = "x-channel",
+    override val deviceTypeKey: String = "x-device-type",
+    override val isEmulatorKey: String = "x-app-is-emulator",
+    override val isRootedKey: String = "x-is-rooted",
+    override val timeStampKey: String = "x-timestamp",
+    override val clientIdKey: String = "x-client-id",
+    override val sessionIdKey: String = "x-session-id"
 ) : HeaderKeyMap

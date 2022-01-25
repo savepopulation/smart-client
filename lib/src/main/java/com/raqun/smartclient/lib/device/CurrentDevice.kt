@@ -7,7 +7,6 @@ import com.raqun.smartclient.lib.util.Emulator
 import java.io.File
 import java.util.*
 
-typealias RootChecker = () -> Boolean
 
 internal val defaultRootChecker: RootChecker = {
     val isEmulator: Boolean = Emulator.isDeviceEmulator()
@@ -27,7 +26,7 @@ internal val defaultRootChecker: RootChecker = {
 
 open class CurrentDevice(
     private val context: Context,
-    private val rootChecker: RootChecker = defaultRootChecker
+    override val rootChecker: RootChecker = defaultRootChecker
 ) : Device {
 
     override val isDeviceEmulator: Boolean

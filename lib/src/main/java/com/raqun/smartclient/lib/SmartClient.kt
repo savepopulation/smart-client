@@ -8,10 +8,12 @@ import com.raqun.smartclient.lib.device.CurrentDevice
 import com.raqun.smartclient.lib.device.Device
 import com.raqun.smartclient.lib.headers.DefaultHeaderKeys
 import com.raqun.smartclient.lib.headers.HeaderKeyMap
+import com.raqun.smartclient.lib.util.ClientIdGenerator
+import com.raqun.smartclient.lib.util.SessionIdGenerator
+import com.raqun.smartclient.lib.util.defaultClientIdGenerator
+import com.raqun.smartclient.lib.util.defaultSessionIdGenerator
 import java.util.UUID
 
-typealias ClientIdGenerator = () -> String
-typealias SessionIdGenerator = () -> String
 
 @SuppressLint("StaticFieldLeak")
 object SmartClient {
@@ -30,8 +32,8 @@ object SmartClient {
         context: Context,
         device: Device? = null,
         localDataSource: LocalDataSource? = null,
-        clientIdGenerator: ClientIdGenerator = { UUID.randomUUID().toString() },
-        sessionIdGenerator: SessionIdGenerator = { UUID.randomUUID().toString() },
+        clientIdGenerator: ClientIdGenerator = defaultClientIdGenerator,
+        sessionIdGenerator: SessionIdGenerator = defaultSessionIdGenerator,
         headerKeyMap: HeaderKeyMap = DefaultHeaderKeys()
     ) {
         this.device = device ?: CurrentDevice(context = context)

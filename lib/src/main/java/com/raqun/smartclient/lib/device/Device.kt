@@ -1,6 +1,7 @@
 package com.raqun.smartclient.lib.device
 
-typealias RootChecker = () -> Boolean
+import com.raqun.smartclient.lib.util.RootChecker
+
 
 interface Device {
     val isDeviceEmulator: Boolean

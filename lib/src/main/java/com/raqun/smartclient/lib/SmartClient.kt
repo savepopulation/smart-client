@@ -12,8 +12,6 @@ import com.raqun.smartclient.lib.util.ClientIdGenerator
 import com.raqun.smartclient.lib.util.SessionIdGenerator
 import com.raqun.smartclient.lib.util.defaultClientIdGenerator
 import com.raqun.smartclient.lib.util.defaultSessionIdGenerator
-import java.util.UUID
-
 
 @SuppressLint("StaticFieldLeak")
 object SmartClient {

@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Context
 import com.raqun.smartclient.lib.data.DefaultLocalDataSource
 import com.raqun.smartclient.lib.data.LocalDataSource
+import com.raqun.smartclient.lib.headers.DefaultHeaderKeys
+import com.raqun.smartclient.lib.headers.HeaderKeyMap
 import java.util.UUID
 
 typealias ClientIdGenerator = () -> String
@@ -25,7 +27,8 @@ object SmartClient {
         context: Context,
         localDataSource: LocalDataSource? = null,
         clientIdGenerator: ClientIdGenerator = { UUID.randomUUID().toString() },
-        sessionIdGenerator: SessionIdGenerator = { UUID.randomUUID().toString() }
+        sessionIdGenerator: SessionIdGenerator = { UUID.randomUUID().toString() },
+        headerKeyMap: HeaderKeyMap = DefaultHeaderKeys()
     ) {
         this.localDataSource = localDataSource ?: DefaultLocalDataSource(context.applicationContext)
         _clientId = this.localDataSource.getClientId() ?: kotlin.run {

@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Context
 import com.raqun.smartclient.lib.data.DefaultLocalDataSource
 import com.raqun.smartclient.lib.data.LocalDataSource
+import com.raqun.smartclient.lib.device.CurrentDevice
+import com.raqun.smartclient.lib.device.Device
 import com.raqun.smartclient.lib.headers.DefaultHeaderKeys
 import com.raqun.smartclient.lib.headers.HeaderKeyMap
 import java.util.UUID
@@ -13,6 +15,7 @@ typealias SessionIdGenerator = () -> String
 
 @SuppressLint("StaticFieldLeak")
 object SmartClient {
+    private lateinit var device: Device
     private lateinit var localDataSource: LocalDataSource
     private lateinit var _clientId: String
     private lateinit var _sessionId: String
@@ -25,11 +28,13 @@ object SmartClient {
 
     fun setup(
         context: Context,
+        device: Device? = null,
         localDataSource: LocalDataSource? = null,
         clientIdGenerator: ClientIdGenerator = { UUID.randomUUID().toString() },
         sessionIdGenerator: SessionIdGenerator = { UUID.randomUUID().toString() },
         headerKeyMap: HeaderKeyMap = DefaultHeaderKeys()
     ) {
+        this.device = device ?: CurrentDevice(context = context)
         this.localDataSource = localDataSource ?: DefaultLocalDataSource(context.applicationContext)
         _clientId = this.localDataSource.getClientId() ?: kotlin.run {
             val clientId = clientIdGenerator.invoke()

@@ -15,8 +15,12 @@ import com.raqun.smartclient.lib.util.defaultSessionIdGenerator
 
 @SuppressLint("StaticFieldLeak")
 object SmartClient {
+
+    private var headerKeyMap: HeaderKeyMap = DefaultHeaderKeys()
+
     private lateinit var device: Device
     private lateinit var localDataSource: LocalDataSource
+
     private lateinit var _clientId: String
     private lateinit var _sessionId: String
 
@@ -26,21 +30,68 @@ object SmartClient {
     val sessionId: String
         get() = _sessionId
 
+    val isEmulator: Boolean
+        get() = device.isDeviceEmulator
+
+    val isRooted: Boolean
+        get() = device.isDeviceRooted
+
+    val time: Long
+        get() = device.deviceTime
+
+    val lang: String
+        get() = device.deviceLang
+
+    val type: Device.Type
+        get() = device.provideDeviceType()
+
+    val osVersion: Int
+        get() = device.osVersion
+
+    val brand: String
+        get() = device.brand
+
+    val model: String
+        get() = device.model
+
     fun setup(
         context: Context,
         device: Device? = null,
         localDataSource: LocalDataSource? = null,
         clientIdGenerator: ClientIdGenerator = defaultClientIdGenerator,
         sessionIdGenerator: SessionIdGenerator = defaultSessionIdGenerator,
-        headerKeyMap: HeaderKeyMap = DefaultHeaderKeys()
+        headerKeyMap: HeaderKeyMap? = null
     ) {
-        this.device = device ?: CurrentDevice(context = context)
-        this.localDataSource = localDataSource ?: DefaultLocalDataSource(context.applicationContext)
+        this.device = device ?: CurrentDevice(context = context.applicationContext)
+        this.localDataSource =
+            localDataSource ?: DefaultLocalDataSource(context = context.applicationContext)
         _clientId = this.localDataSource.getClientId() ?: kotlin.run {
             val clientId = clientIdGenerator.invoke()
             this.localDataSource.saveClientId(clientId)
             clientId
         }
         _sessionId = sessionIdGenerator.invoke()
+        headerKeyMap?.let { this.headerKeyMap = it }
+    }
+
+    fun generateHeaders(withDefaults: Boolean = true): MutableMap<String, String> {
+        return mutableMapOf<String, String>().apply {
+            if (withDefaults) {
+                put(headerKeyMap.contentTypeKey, "application/json")
+                put(headerKeyMap.acceptKey, "application/json")
+            }
+            put(headerKeyMap.clientIdKey, _clientId)
+            put(headerKeyMap.sessionIdKey, _sessionId)
+            put(headerKeyMap.deviceLocaleKey, lang)
+            put(headerKeyMap.deviceBrandKey, brand)
+            put(headerKeyMap.deviceModelKey, model)
+            put(headerKeyMap.deviceOsKey, osVersion.toString())
+            put(headerKeyMap.deviceOsTypeKey, "android")
+            put(headerKeyMap.channelKey, "mobile")
+            put(headerKeyMap.deviceTypeKey, type.name.lowercase())
+            put(headerKeyMap.isEmulatorKey, isEmulator.toString())
+            put(headerKeyMap.isRootedKey, isRooted.toString())
+            put(headerKeyMap.timeStampKey, time.toString())
+        }
     }
 }

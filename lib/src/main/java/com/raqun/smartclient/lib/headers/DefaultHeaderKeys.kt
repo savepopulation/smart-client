@@ -1,6 +1,8 @@
 package com.raqun.smartclient.lib.headers
 
 open class DefaultHeaderKeys(
+    override val contentTypeKey: String = "Content-Type",
+    override val acceptKey: String = "Accept",
     override val deviceLocaleKey: String = "x-device-locale",
     override val deviceBrandKey: String = "x-device-brand",
     override val deviceModelKey: String = "x-device-model",

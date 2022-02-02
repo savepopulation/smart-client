@@ -1,6 +1,8 @@
 package com.raqun.smartclient.lib.headers
 
 interface HeaderKeyMap {
+    val contentTypeKey: String
+    val acceptKey: String
     val deviceLocaleKey: String
     val deviceBrandKey: String
     val deviceModelKey: String

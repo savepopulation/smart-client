@@ -8,8 +8,15 @@ interface Device {
     val isDeviceRooted: Boolean
     val deviceTime: Long
     val deviceLang: String
+    val osVersion: Int
+    val brand: String
+    val model: String
 
     val rootChecker: RootChecker
 
-    fun provideDeviceType(): DeviceType
+    fun provideDeviceType(): Type
+
+    enum class Type {
+        PHONE, TABLET
+    }
 }

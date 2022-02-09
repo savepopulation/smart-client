@@ -6,6 +6,6 @@ import com.raqun.smartclient.lib.SmartClient
 class SampleApp : Application() {
     override fun onCreate() {
         super.onCreate()
-        SmartClient.setup(applicationContext)
+        SmartClient.setup(this)
     }
 }

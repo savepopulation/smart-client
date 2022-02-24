@@ -22,11 +22,19 @@ object SmartClient {
     private lateinit var _clientId: String
     private lateinit var _sessionId: String
 
+    private var _firstAppOpeningTime: Long = 0L
+
     val clientId: String
         get() = _clientId
 
     val sessionId: String
         get() = _sessionId
+
+    val isFirstOpen: Boolean
+        get() = _firstAppOpeningTime == 0L
+
+    val firstAppOpeningTime: Long
+        get() = _firstAppOpeningTime
 
     val isEmulator: Boolean
         get() = device.isDeviceEmulator
@@ -68,6 +76,7 @@ object SmartClient {
             clientId
         }
         _sessionId = sessionIdGenerator.invoke()
+        initFirstAppOpeningTime()
     }
 
     fun generateHeaders(
@@ -91,6 +100,14 @@ object SmartClient {
             put(headerKeyMap.isEmulatorKey, isEmulator.toString())
             put(headerKeyMap.isRootedKey, isRooted.toString())
             put(headerKeyMap.timeStampKey, time.toString())
+            put(headerKeyMap.isFirstOpen, isFirstOpen.toString())
+        }
+    }
+
+    private fun initFirstAppOpeningTime() {
+        _firstAppOpeningTime = this.localDataSource.getFirstAppOpeningTime()
+        if (firstAppOpeningTime == 0L) {
+            localDataSource.saveFirstAppOpeningTime(System.currentTimeMillis())
         }
     }
 }

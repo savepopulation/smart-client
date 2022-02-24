@@ -22,6 +22,18 @@ open class DefaultLocalDataSource(private val context: Context) : LocalDataSourc
         }
     }
 
+    // Returns first app opening time
+    override fun getFirstAppOpeningTime(): Long {
+        return sharedPrefs.getLong(KEY_FIRST_OPEN, 0L)
+    }
+
+    // Saves first app opening time
+    override fun saveFirstAppOpeningTime(dateTime: Long) {
+        sharedPrefs.operate {
+            putLong(KEY_FIRST_OPEN, dateTime)
+        }
+    }
+
     companion object {
         /*
          * Master Key for Shared Preferences
@@ -32,5 +44,6 @@ open class DefaultLocalDataSource(private val context: Context) : LocalDataSourc
          * Keys
          */
         private const val KEY_CLIENT_ID = "client_id"
+        private const val KEY_FIRST_OPEN = "first_open"
     }
 }

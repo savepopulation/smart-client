@@ -14,5 +14,6 @@ open class DefaultHeaderKeys(
     override val isRootedKey: String = "x-is-rooted",
     override val timeStampKey: String = "x-timestamp",
     override val clientIdKey: String = "x-client-id",
-    override val sessionIdKey: String = "x-session-id"
+    override val sessionIdKey: String = "x-session-id",
+    override val isFirstOpen: String = "x-is-first-open"
 ) : HeaderKeyMap

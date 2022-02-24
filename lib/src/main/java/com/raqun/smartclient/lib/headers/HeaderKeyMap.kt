@@ -15,4 +15,5 @@ interface HeaderKeyMap {
     val timeStampKey: String
     val clientIdKey: String
     val sessionIdKey: String
+    val isFirstOpen: String
 }

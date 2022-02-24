@@ -16,8 +16,6 @@ import com.raqun.smartclient.lib.util.defaultSessionIdGenerator
 @SuppressLint("StaticFieldLeak")
 object SmartClient {
 
-    private var headerKeyMap: HeaderKeyMap = DefaultHeaderKeys()
-
     private lateinit var device: Device
     private lateinit var localDataSource: LocalDataSource
 
@@ -59,8 +57,7 @@ object SmartClient {
         device: Device? = null,
         localDataSource: LocalDataSource? = null,
         clientIdGenerator: ClientIdGenerator = defaultClientIdGenerator,
-        sessionIdGenerator: SessionIdGenerator = defaultSessionIdGenerator,
-        headerKeyMap: HeaderKeyMap? = null
+        sessionIdGenerator: SessionIdGenerator = defaultSessionIdGenerator
     ) {
         this.device = device ?: CurrentDevice(context = context.applicationContext)
         this.localDataSource =
@@ -71,10 +68,12 @@ object SmartClient {
             clientId
         }
         _sessionId = sessionIdGenerator.invoke()
-        headerKeyMap?.let { this.headerKeyMap = it }
     }
 
-    fun generateHeaders(withDefaults: Boolean = true): MutableMap<String, String> {
+    fun generateHeaders(
+        headerKeyMap: HeaderKeyMap = DefaultHeaderKeys(),
+        withDefaults: Boolean = true
+    ): MutableMap<String, String> {
         return mutableMapOf<String, String>().apply {
             if (withDefaults) {
                 put(headerKeyMap.contentTypeKey, "application/json")

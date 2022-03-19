@@ -16,6 +16,8 @@ Smart Client provides the following information.
 ```KOTLIN
 val clientId: String // An identifier for the client
 val sessionId: String // An identifier for the current client session.
+val isFirstOpen: Boolean // Flag that is user is opening the app for the first time
+val firstAppOpeningTime: Long // First app opening time in milis
 val isEmulator: Boolean // Provides if the device is an emulator or not
 val isRooted: Boolean // Provides if the devices is rooted or not
 val time: Long // Device current time in milis
@@ -118,7 +120,7 @@ open class DefaultHeaderKeys(
     override val sessionIdKey: String = "x-session-id"
 ) : HeaderKeyMap
 ```
-To change the keys or use a totally different keymap, you extend ```DefaultHeaderKeys``` class or implement  ```HeaderKeyMap``` and pass it to the ```setup``` method of **SmartClient**
+To change the keys or use a totally different keymap, you extend ```DefaultHeaderKeys``` class or implement  ```HeaderKeyMap``` and pass it to the ```generateHeaders``` method of **SmartClient**
 
 ### Dependency<br>
 ```
@@ -131,7 +133,7 @@ allprojects {
   ```
   ```
   dependencies {
-	        implementation 'com.github.savepopulation:smart-client:1.0.0'	
+	        implementation 'com.github.savepopulation:smart-client:1.0.1'	
   }
   ```
   ### License

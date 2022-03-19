@@ -133,7 +133,7 @@ allprojects {
   ```
   ```
   dependencies {
-	        implementation 'com.github.savepopulation:smart-client:1.0.1'	
+	        implementation 'com.github.savepopulation:smart-client:1.0.2'	
   }
   ```
   ### License

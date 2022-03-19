@@ -4,6 +4,7 @@ import com.raqun.smartclient.lib.util.RootChecker
 
 
 interface Device {
+    val type: Type
     val isDeviceEmulator: Boolean
     val isDeviceRooted: Boolean
     val deviceTime: Long

@@ -13,9 +13,17 @@ class CurrentDevice(
     override val rootChecker: RootChecker = defaultRootChecker
 ) : Device {
 
-    override val isDeviceEmulator: Boolean = checkIfDeviceEmulator()
+    override val type: Device.Type
 
-    override val isDeviceRooted: Boolean = rootChecker.invoke()
+    override val isDeviceEmulator: Boolean
+
+    override val isDeviceRooted: Boolean
+
+    init {
+        type = provideDeviceType()
+        isDeviceEmulator = checkIfDeviceEmulator()
+        isDeviceRooted = rootChecker.invoke()
+    }
 
     override val deviceTime: Long
         get() = System.currentTimeMillis()

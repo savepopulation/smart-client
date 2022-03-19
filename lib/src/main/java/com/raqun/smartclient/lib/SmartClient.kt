@@ -49,7 +49,7 @@ object SmartClient {
         get() = device.deviceLang
 
     val type: Device.Type
-        get() = device.provideDeviceType()
+        get() = device.type
 
     val osVersion: Int
         get() = device.osVersion

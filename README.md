@@ -1,7 +1,7 @@
 # Smart Client
 **SmartClient** is a library that contains the default implementations to idenify a client.
 
-## How to use?
+## How to use?
 It's easy to setup and use. Just call the ```setup``` method of ```SmartClient``` in ```onCreate``` method of your application class.
 
 ```KOTLIN
